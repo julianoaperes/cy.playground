@@ -2,7 +2,11 @@
   "name": "playground",
   "packageManager": "yarn@4.5.1",
   "devDependencies": {
-    "cypress": "13.15.0"
+    "cypress": "13.15.0",
+    "nodemon": "^3.1.7"
+  },
+  "scripts": {
+    "cypress:watch": "nodemon --watch cypress/e2e --exec 'yarn cypress run'"
   },
   "dependencies": {
     "express": "^4.21.1"

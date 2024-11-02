@@ -23,3 +23,26 @@
 //
 // -- This will overwrite an existing command --
 // Cypress.Commands.overwrite('visit', (originalFn, url, options) => { ... })
+
+Cypress.Commands.add("noticeHaveText", (text) => {
+  cy.get(".notice p").should("be.visible").and("have.text", text);
+});
+
+Cypress.Commands.add("userLoginConfirmation", () => {
+  cy.get('[data-cy="welcome-title"]')
+    .scrollIntoView()
+    .should("be.visible")
+    .and("have.text", "Boas vindas ao Cypress Playground");
+});
+
+Cypress.Commands.add("login", (email, password) => {
+  cy.get('[data-cy="email"]').type(email);
+  cy.get('[data-cy="password"]').type(password);
+  cy.get('[data-cy="login-button"]').click();
+});
+
+Cypress.Commands.add("AccessingHomePage", () => {
+  cy.viewport(1920, 1080);
+  cy.visit("https://playground.cyskills.com.br/login");
+  cy.contains("h2", "Faça login").should("have.text", "Faça login");
+});
