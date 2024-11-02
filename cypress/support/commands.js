@@ -24,6 +24,11 @@
 // -- This will overwrite an existing command --
 // Cypress.Commands.overwrite('visit', (originalFn, url, options) => { ... })
 
+Cypress.Commands.add("goToMenuOptions", (route, title) => {
+  cy.get(`nav a[href="${route}"]`).click();
+  cy.contains("h2", title).should("be.visible");
+});
+
 Cypress.Commands.add("noticeHaveText", (text) => {
   cy.get(".notice p").should("be.visible").and("have.text", text);
 });
