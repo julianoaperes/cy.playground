@@ -1,4 +1,4 @@
-describe("Login", () => {
+describe("Login validation", () => {
   beforeEach(() => {
     cy.AccessingHomePage();
   });

@@ -47,7 +47,7 @@ Cypress.Commands.add("login", (email, password) => {
 });
 
 Cypress.Commands.add("AccessingHomePage", () => {
-  cy.viewport(1920, 1080);
+  cy.viewport(2560, 1600);
   cy.visit("https://playground.cyskills.com.br/login");
   cy.contains("h2", "Faça login").should("have.text", "Faça login");
 });
