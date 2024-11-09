@@ -425,21 +425,30 @@ The <textarea> tag is perfect for situations where users need to enter larger bo
 
 CHECKBOXES
 
-Caso esteja oculto:
+Todos os checkboxes deveriam ter o atributo "value=valor". Abrir bug se não encontrar.
+
+Caso esteja oculto, tente usar a label
 
 cy.get('label[for="javascript"]').click();
 
 Caso preciser forçar
 
-    cy.get('input'="value="1"").click(force:true)
+    cy.get('input[value="1"]').click({force:true})
 
 Caso esteja visível e não precise forçar
 
-    cy.get('input'="value="1"").click()
+    cy.get('input[value="1"]').click()
 
-Caso tenha inumeras opções de checkboxes, use "const langs"
+Tente utilizer o parent()
 
-In JavaScript, const langs is typically used to declare a constant variable named langs. This variable is often used to hold data, such as an array or an object representing a set of languages or language-related data.
+It selects the parent element of the currently selected element.
+In this context, it finds the parent of the label[for="rust"] element, which might be a <div> or some other container element surrounding the label and input.
+
+    cy.get('label[for="rust"]').parent().click();
+
+Caso tenha inumeras opções de checkboxes, use listas [] arrays
+
+In JavaScript, const name is typically used to declare a constant variable named langs. This variable is often used to hold data, such as an array or an object representing a set of languages or language-related data.
 
 For example:
 
@@ -519,6 +528,12 @@ cy.get(...) is a Cypress command used to select an element from the DOM.
 In this case, it’s selecting a <label> element with a for attribute matching the current language (e.g., for="javascript").
 The backticks (`) are used for template literals in JavaScript, allowing you to insert the variable lang directly into the string.
 .click() is a Cypress command that simulates a click action on the selected element, which in this case is the label associated with each checkbox.
+
+---
+
+RADIO BUTTONS
+
+Todos os checkboxes deveriam ter o atributo "value=valor". Abrir bug se não encontrar.
 
 ---
 
