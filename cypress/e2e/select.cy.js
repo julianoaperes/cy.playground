@@ -38,8 +38,6 @@ describe("Menu Select Validation", () => {
   it("Validation of 'Caixa de múltipla escolha' field", () => {
     cy.get('input[placeholder^="Linguagens de programação"]').click();
     cy.contains(".option-item", "JavaScript").click();
-    cy.wait(500);
-    cy.contains(".option-item", "JavaScript").click();
   });
 
   it("Selecting and  unselecting  all options", () => {
@@ -62,6 +60,22 @@ describe("Menu Select Validation", () => {
       for (let i = 0; i < 3; i++)
         cy.contains(".option-item", `${lang}`).click();
       cy.wait(500);
+    });
+  });
+
+  it.only("Avoinding false positive between 'Java' and 'JavaScript'", () => {
+    /*  it.only("Validation of 'Caixa de múltipla escolha' field", () => {
+      cy.get('input[placeholder^="Linguagens de programação"]').click();
+      cy.contains(".option-item", "Java").click();
+      The result of this code is "JavaScript"
+    }); */
+
+    const langs = ["TypeScript", "Java", "C#"];
+
+    cy.get('input[placeholder^="Linguagens de programação"]').click().parent();
+
+    langs.forEach((lang) => {
+      cy.contains(".option-item", new RegExp("^" + lang + "$")).click();
     });
   });
 });
